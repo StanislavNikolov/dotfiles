@@ -15,6 +15,7 @@ Plug 'sjl/badwolf'
 Plug 'StanislavNikolov/tomorrow-theme'
 Plug 'romainl/flattened'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'whatyouhide/vim-gotham'
 
 " Zero-conf plugins
 Plug 'bronson/vim-trailing-whitespace'
@@ -23,12 +24,13 @@ Plug 'pbrisbin/vim-alt-ctags'
 
 " Plug 'fholgado/minibufexpl.vim'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'Shougo/deoplete.nvim'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 " }}}
 " Basic nvim settings {{{
 set autoindent
-" set colorcolumn=101
 set showcmd
 set number
 set relativenumber
@@ -47,6 +49,10 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set background=dark
 colorscheme PaperColor
 syntax on
+" Make the background transparent
+"au ColorScheme * hi Normal ctermbg=none guibg=none
+highlight Normal guibg=none
+highlight NonText guibg=none
 " }}}
 " Other Leader keybindings {{{
 let mapleader = " "
@@ -95,10 +101,9 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ -g ""'
 " }}}
 " Other {{{
-" let b:ctags_command = "ctags -f '%f' -R *"
-
+let b:ctags_command = "ctags -f '%f' -R *"
 nnoremap ; :
-
 " }}}
+
 
 " vim:foldmethod=marker:foldlevel=0

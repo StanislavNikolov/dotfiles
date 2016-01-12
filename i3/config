@@ -2,10 +2,10 @@
 
 ##### Settings:
 	# Fonts
-	set $fontName pango:DejaVuMono
+	set $fontName pango:Hack
 	set $fontStyle Regular
-	set $fontSizeBar 8
-	set $fontSizeOther 8
+	set $fontSizeBar 10
+	set $fontSizeOther 10
 
 	# Terminal
 	set $terminal sakura
@@ -14,8 +14,8 @@
 	set $rofiBG "#444242"
 	set $rofiFG "#FFFFFF"
 
-	# Wallpaper
-	set $XrootBGImage "~/wallpapers/current.jpg"
+	# Window borders
+	set $winBorderSize 3
 ##### </Settings>
 
 set $mod Mod4
@@ -24,18 +24,17 @@ set $mod Mod4
 setxkbmap "us+bg(bds):2+group(alt_shift_toggle)"
 exec setxkbmap -option caps:escape
 
-# Set wallpaper
-exec feh --bg-scale $XrootBGImage
-
 # Enable per-window layout
 exec kbdd
 
-# Compositor and notification manager
+# Compositor and other
 exec compton -f -m 0.9 -O 0.06 -D 5 --blur-kern "3,3,0.0,1.0,0.0,1.0,-4.0,1.0,0,1.0"
 exec dunst
+exec ~/.local/bin/setwallpaper
 
 # When multiple windows are shown in split-mode, don't display borders
-hide_edge_borders both
+# hide_edge_borders both
+new_window pixel $winBorderSize
 
 # If the app is in fullsreen and makes a popup, display it
 popup_during_fullscreen smart
@@ -145,6 +144,7 @@ bar {
 	position top
 	font $fontName $fontStyle $fontSizeBar
 }
+
 
 # Turn on laptop's screen for some reason
 bindsym $mod+p exec xrandr --output LVDS1 --auto
