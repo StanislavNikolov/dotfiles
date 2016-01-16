@@ -103,6 +103,7 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 " Other {{{
 let b:ctags_command = "ctags -f '%f' -R *"
 nnoremap ; :
+map <F5> :buffers<CR>:buffer 
 " }}}
 
 
