@@ -14,8 +14,9 @@
 	set $rofiBG "#444242"
 	set $rofiFG "#FFFFFF"
 
-	# Window borders
+	# Window borders and gaps
 	set $winBorderSize 3
+	set $gaps 8
 ##### </Settings>
 
 set $mod Mod4
@@ -31,6 +32,12 @@ exec kbdd
 exec compton -f -m 0.9 -O 0.06 -D 5 --blur-kern "3,3,0.0,1.0,0.0,1.0,-4.0,1.0,0,1.0"
 exec dunst
 exec ~/.local/bin/setwallpaper
+
+# i3-gaps
+for_window [class="^.*"] border pixel 0
+gaps inner $gaps
+gaps outer 0
+smart_gaps on
 
 # When multiple windows are shown in split-mode, don't display borders
 # hide_edge_borders both
@@ -140,7 +147,7 @@ mode "resize" {
 bindsym $mod+d exec rofi -show run -bg $rofiBG -fg $rofiFG
 
 bar {
-	status_command python3.4 ~/.config/i3/status.py
+	status_command ~/.config/i3/status.py
 	position top
 	font $fontName $fontStyle $fontSizeBar
 }
@@ -150,9 +157,9 @@ bar {
 bindsym $mod+p exec xrandr --output LVDS1 --auto
 bindsym XF86Display exec xrandr --output LVDS1 --auto
 
-bindsym $mod+Shift+d exec ~/.local/bin/lock
-bindsym $mod+Shift+s exec ~/.local/bin/lock suspend
-bindsym XF86Sleep exec ~/.local/bin/lock
+bindsym $mod+Shift+d exec lock
+bindsym $mod+Shift+s exec lock suspend
+bindsym XF86Sleep exec lock
 
 # brightness control
 bindsym XF86MonBrightnessDown exec xbacklight -steps 20 -time 50 -dec 10

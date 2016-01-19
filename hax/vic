@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+case "$1" in
+	"i3") file=~/.config/i3/config;;
+	"vi") file=~/.config/nvim/init.vim;;
+	"sh") file=~/.config/zsh/zshrc;;
+	*) echo "No config shortcut name given" && exit
+esac
+
+if [ "$EDITOR" == "" ]; then
+	EDITOR=vi
+fi
+
+$EDITOR $file

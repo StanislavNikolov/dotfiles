@@ -1,4 +1,4 @@
-#!/bin/env python3.4
+#!/bin/env python
 import subprocess
 from i3pystatus import Status
 
