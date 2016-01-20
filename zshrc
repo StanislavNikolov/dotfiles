@@ -13,5 +13,5 @@ alias duh='du -h --max-depth=1'
 
 # source ~/.local/bin/bashmarks.sh
 
-export $EDITOR="nvim"
+export EDITOR="nvim"
 export PATH="$HOME/.hax:$HOME/.local/bin:$PATH"
