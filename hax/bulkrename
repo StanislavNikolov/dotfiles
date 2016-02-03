@@ -3,12 +3,12 @@
 if [ $# == 2 ]
 then
 	dir='.'
-	toFind=$1
-	toReplace=$2
+	toFind="$1"
+	toReplace="$2"
 else
-	dir=$1
-	toFind=$2
-	toReplace=$3
+	dir="$1"
+	toFind="$2"
+	toReplace="$3"
 fi
 
 for file in $dir/*;

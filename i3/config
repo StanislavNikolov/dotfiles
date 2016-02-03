@@ -16,7 +16,6 @@
 
 	# Window borders and gaps
 	set $winBorderSize 3
-	set $gaps 8
 ##### </Settings>
 
 set $mod Mod4
@@ -31,13 +30,15 @@ exec kbdd
 # Compositor and other
 exec compton -f -m 0.9 -O 0.06 -D 5 --blur-kern "3,3,0.0,1.0,0.0,1.0,-4.0,1.0,0,1.0"
 exec dunst
-exec ~/.local/bin/setwallpaper
+exec setwallpaper
 
 # i3-gaps
-for_window [class="^.*"] border pixel 0
-gaps inner $gaps
-gaps outer 0
-smart_gaps on
+# set $gaps 8
+# for_window [class="^.*"] border pixel 0
+# gaps inner $gaps
+# gaps outer 0
+# smart_gaps on
+# smart_borders on
 
 # When multiple windows are shown in split-mode, don't display borders
 # hide_edge_borders both
