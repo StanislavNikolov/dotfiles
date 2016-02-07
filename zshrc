@@ -1,35 +1,35 @@
-# simple movement ones
+# aliases
 alias c='cd'
 alias l='ls --color=auto'
 alias lh='ls -lh'
 alias la='ls -a'
 alias lah='ls -lah'
 
-# non-standart commands
-alias vi=nvim
+alias ls='ls --color=auto'
+alias grep='grep --colour=auto'
 
-# other small gems
+alias vi=nvim
 alias duh='du -h --max-depth=1'
 
 export EDITOR="nvim"
 export PATH="$HOME/.hax:$HOME/.local/bin:$PATH"
 
-# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
-if [[ -f ~/.dir_colors ]] ; then
-	eval $(dircolors -b ~/.dir_colors)
-elif [[ -f /etc/DIR_COLORS ]] ; then
+bindkey -e
+
+# Enable colors for ls, etc.
+if [[ -f /etc/DIR_COLORS ]] ; then
 	eval $(dircolors -b /etc/DIR_COLORS)
 fi
 
-autoload -U compinit
-compinit
+# autoload -U compinit
+# compinit
 
-autoload -U select-word-style
-select-word-style bash                      
+# autoload -U select-word-style
+# select-word-style bash                      
 
 PS1="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
-PS2="%B %_ %F{blue}>%f%b "
-
+# PS2="%B %_ %F{blue}>%f%b "
+ 
 setopt complete_in_word
 setopt auto_cd
 setopt extended_glob
@@ -61,11 +61,3 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=33=01;31
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*:complete:*' use-cache 1
 zstyle ':completion:*' cache-path /tmp/.zshcache
-
-alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
-alias egrep='egrep --colour=auto'
-alias fgrep='fgrep --colour=auto'
-alias dmesg='dmesg --color'
-alias pbg='ping google.bg'
-alias p88='ping 8.8.8.8'
