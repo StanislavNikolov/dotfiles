@@ -15,6 +15,8 @@ export EDITOR="nvim"
 export PATH="$HOME/.hax:$HOME/.local/bin:$PATH"
 
 bindkey -e
+bindkey ";5C" forward-word
+bindkey ";5D" backward-word
 
 # Enable colors for ls, etc.
 if [[ -f /etc/DIR_COLORS ]] ; then
@@ -25,11 +27,11 @@ fi
 # compinit
 
 # autoload -U select-word-style
-# select-word-style bash                      
+# select-word-style bash
 
 PS1="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
 # PS2="%B %_ %F{blue}>%f%b "
- 
+
 setopt complete_in_word
 setopt auto_cd
 setopt extended_glob
