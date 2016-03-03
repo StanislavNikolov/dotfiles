@@ -4,26 +4,30 @@ from i3pystatus import Status
 
 status = Status(standalone=True)
 
-color_normal="#FFFFFF"
-color_purple="#D175FF"
-color_critical="#FF6600"
+#green="#00D386"
+green="#1A8C01"
+white="#FFFFFF"
+purple="#D175FF"
+red="#FF6600"
+blue="#4581DD"
+yellow="#DDDD11"
 
 #Clock
-status.register("clock", format="%A %d %B %R")
+status.register("clock", format="%a %d %R", color=white)
 
 #Battery
 status.register("battery",
-    color=color_normal, charging_color=color_purple, full_color=color_normal, critical_color=color_critical,
-    status={'DPL': 'DPL', 'FULL': 'FULL', 'CHR': 'CHR', 'DIS': 'DIS'},
-    format="Battery: {percentage:.1f}% {status}", interval=10)
+    color=yellow, charging_color=purple, full_color=green, critical_color=red,
+    format="❤: {percentage:.0f}%", interval=1)
 
-#CPU temperature
-status.register("temp", color=color_normal, format="{temp:.0f}°C")
+# CPU temperature
+# status.register("temp", color=white, format="{temp:.0f}°C")
 
-#CPU usage (text)
-status.register("cpu_usage", format="CPU: {usage_cpu1:02}% {usage_cpu1:02}% {usage_cpu2:02}% {usage_cpu3:02}%", interval=5)
+# CPU usage (text)
+# status.register("cpu_usage", format="▣ CPU: {usage_cpu1:02}% {usage_cpu1:02}% {usage_cpu2:02}% {usage_cpu3:02}%", interval=1)
+status.register("cpu_usage", format="▣: {usage:02}%", interval=1)
 
-#RAM
-status.register("mem", color=color_normal, format="{used_mem:.0f}/{total_mem:.0f} MIB", interval=5)
+# RAM
+status.register("mem", color=blue, format="≣: {percent_used_mem:.0f}%", interval=1)
 
 status.run()

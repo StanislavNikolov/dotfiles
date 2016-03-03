@@ -1,7 +1,0 @@
-firefox
-pavucontrol
-thunderbird
-utox
-evince
-nm-applet
-sakura
