@@ -1,0 +1,13 @@
+#!env bash
+
+dir=$1
+bin=$2
+tmpfile=`mktemp`
+
+for test in $dir/*.in
+do
+	echo $test
+	$bin < $test > $tmpfile
+	out=`basename -s .in $test`.sol
+	diff -b $dir/$out $tmpfile
+done
