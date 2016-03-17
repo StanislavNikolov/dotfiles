@@ -11,3 +11,5 @@ do
 	out=`basename -s .in $test`.sol
 	diff -b $dir/$out $tmpfile
 done
+
+rm $tmpfile

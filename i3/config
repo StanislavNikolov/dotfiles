@@ -140,20 +140,22 @@ mode "resize" {
 bindsym $mod+d exec rofi -show run -bg $rofiBG -fg $rofiFG
 
 # Colors
-set $asd #2b2b2b
-set $bsd #191919
-set $csd #111111
+set $gray_1 #2b2b2b
+set $gray_2 #191919
+set $gray_3 #111111
 
 set $abf #3a3a3a
 
 set $red	#B58900
 set $white	#839496
+set $black #000000
 
-# Window colors         border  backgr. text    indicator
-client.focused			$asd	$asd	$white	$white
-client.unfocused		$csd	$csd	$white	$white
-client.focused_inactive	$bsd	$bsd	$white	$white
-client.urgent			$white	$white	$csd 	$csd
+# Window colors         border	backgr.	text	indicator
+client.focused			$gray_1	$gray_1	$white	$white
+client.unfocused		$gray_3	$gray_3	$white	$white
+client.focused_inactive	$gray_2	$gray_2	$white	$white
+client.urgent			$white	$white	$gray_3	$gray_3
+
 
 bar {
 	status_command ~/.config/i3/status.py
@@ -163,10 +165,10 @@ bar {
 
 	colors {
 		#class                  border				backgr.				text
-		focused_workspace       $abf				$abf				$white
-		active_workspace        $abf				$status_grey_bg		$white
-		inactive_workspace      $status_grey_bg     $status_grey_bg		$white
-		urgent_workspace        $white				$white				$csd
+		focused_workspace       $black				$abf				$white
+		active_workspace        $abf				$black				$white
+		inactive_workspace      $black				$black				$white
+		urgent_workspace        $white				$white				$gray_3
 
 		statusline              $white
 	}
