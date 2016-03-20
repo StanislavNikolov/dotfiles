@@ -9,7 +9,7 @@ imlib2_grab $tmpImgName
 convert $tmpImgName -blur 6x3 $tmpImgName
 
 # Start i3lock and put the blurred image as a background
-i3lock -ui $tmpImgName
+i3lock -fi $tmpImgName
 
 if [ "$1" == "suspend" ]
 then
