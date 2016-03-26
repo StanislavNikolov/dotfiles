@@ -13,35 +13,42 @@ alias duh='du -h --max-depth=1'
 
 export EDITOR="nvim"
 export PATH="$HOME/.hax:$HOME/.local/bin:$PATH"
+export LANG="en_US.utf8"
 
 bindkey -e
-bindkey ";5C" forward-word
-bindkey ";5D" backward-word
+bindkey ';5C' forward-word
+bindkey ';5D' backward-word
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
 
 # Enable colors for ls, etc.
 if [[ -f /etc/DIR_COLORS ]] ; then
 	eval $(dircolors -b /etc/DIR_COLORS)
 fi
 
-# autoload -U compinit
-# compinit
-
-# autoload -U select-word-style
-# select-word-style bash
+autoload -U compinit
+compinit
 
 PS1="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
 # PS2="%B %_ %F{blue}>%f%b "
 
-setopt complete_in_word
+setopt HIST_IGNORE_DUPS
+setopt APPEND_HISTORY
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+
 setopt auto_cd
-setopt extended_glob
-setopt long_list_jobs
-setopt notify
-setopt nohup
-setopt flow_control
-setopt no_list_ambiguous
-setopt rmstarsilent
-setopt auto_param_slash
+# TODO research
+# setopt complete_in_word
+# setopt extended_glob
+# setopt long_list_jobs
+# setopt notify
+# setopt nohup
+# setopt flow_control
+# setopt no_list_ambiguous
+# setopt rmstarsilent
+# setopt auto_param_slash
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
