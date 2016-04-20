@@ -19,7 +19,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'kien/ctrlp.vim'
 Plug 'pbrisbin/vim-alt-ctags'
 
-" Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
@@ -33,6 +33,8 @@ set tabstop=4
 set shiftwidth=4
 set wrap
 set hidden
+set lazyredraw
+set fillchars=vert:\│
 " }}}
 " Fold settings {{{
 set foldenable
@@ -64,6 +66,13 @@ nmap <silent><leader>n :nohlsearch <CR>
 nnoremap j gj
 nnoremap k gk
 
+nnoremap H ^
+nnoremap L g_
+map <tab> %
+
+nnoremap N Nzzzv
+nnoremap n nzzzv
+
 " Lets me cycle through splits with Alt+motion
 noremap <A-h> <C-w>h<CR>
 noremap <A-j> <C-w>j<CR>
@@ -92,8 +101,23 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 " Other {{{
 let b:ctags_command = "ctags -f '%f' -R *"
 nnoremap ; :
-map <F5> :buffers<CR>:buffer 
-" }}}
 
+" Visual Mode */# from Scrooloose
+function! s:VSetSearch()
+  let temp = @@
+  norm! gvy
+  let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+  let @@ = temp
+endfunction
+
+" Makes * work as expected in visual mode
+vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
+vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+" Copies the current line, without the indentation
+nnoremap vv ^vg_
+
+let g:deoplete#enable_at_startup = 1
+" }}}
 
 " vim:foldmethod=marker:foldlevel=0
