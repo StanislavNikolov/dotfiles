@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+for i in *
+do
+	echo "----------------------"
+	echo -e "$i - `cat $i | head -n 7 | tail -n 1 | cut -c 3-` \n"
+	cat $i | tail -n 5 | head -n 1 | cut -c 3- | sed '$ s/.$//' | sed 's_\\n_\n_g' | sed 's_\\t_\t_g' | sed "s_\\\'_\'_g"
+done;

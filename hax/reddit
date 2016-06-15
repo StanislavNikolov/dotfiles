@@ -1,0 +1,5 @@
+#!/bin/env zsh
+
+r=$((RANDOM%100)); \
+curl -s --connect-timeout 5 -A '/u/insert_username_here' 'https://www.reddit.com/r/showerthoughts/top.json?sort=top&t=week&limit=100' | \
+jq -r '.data.children[].data.title' | head -n $r | tail -n 1

@@ -2,18 +2,19 @@
 
 if [ $# == 2 ]
 then
-	dir='.'
+	dir=''
 	toFind="$1"
 	toReplace="$2"
 else
-	dir="$1"
+	dir="$1/"
 	toFind="$2"
 	toReplace="$3"
 fi
 
-for file in $dir/*;
+for file in $dir*;
 do
-	newName=`echo $file | sed "s/$toFind/$toReplace/g"`
+	newName=`echo $file | sed "s}$toFind}$toReplace}g"`
+	echo $file $toFind $toReplace $newName
 	if [ "$newName" != "$file" ]
 	then
 		mv $file $newName

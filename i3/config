@@ -2,17 +2,17 @@
 
 ##### Settings:
 	# Fonts
-	set $fontName pango:Hack
+	set $fontName pango:Monospace
 	set $fontStyle Regular
-	set $fontSizeBar 11
+	set $fontSizeBar 10
 	set $fontSizeOther 9
 
 	# Terminal
 	set $terminal sakura
 
 	# Rofi
-	set $rofiBG "#444242"
-	set $rofiFG "#FFFFFF"
+	set $rofiBG '#444242'
+	set $rofiFG '#FFFFFF'
 
 	# Window borders and gaps
 	set $winBorderSize 3
@@ -52,10 +52,8 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+c kill
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# bindsym $mod+Escape+h workspace prev
+# bindsym $mod+Escape+l workspace next
 
 # move focused window
 bindsym $mod+Shift+h move left

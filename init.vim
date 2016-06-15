@@ -67,7 +67,7 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap H ^
-nnoremap L g_
+nnoremap L $
 map <tab> %
 
 nnoremap N Nzzzv
@@ -85,6 +85,10 @@ autocmd filetype c nnoremap <leader>r :w <bar> exec '!gcc '.shellescape('%').' -
 autocmd filetype cpp nnoremap <leader>r :w <bar> exec '!g++ '.shellescape('%').' -O2 -std=c++11 -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
 autocmd filetype js nnoremap <leader>r :w <bar> exec '!node '.shellescape('%')<CR>
 " }}}
+" Language specific {{{
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype rust setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+" }}}
 " CtrlP {{{
 " I kinda use Ctrl+P for compliteon, soooo....
 let g:ctrlp_map = '<leader>p'
@@ -99,7 +103,7 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ -g ""'
 " }}}
 " Other {{{
-let b:ctags_command = "ctags -f '%f' -R *"
+"let b:ctags_command = "ctags -f '%f' -R *"
 nnoremap ; :
 
 " Visual Mode */# from Scrooloose

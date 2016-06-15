@@ -1,3 +1,4 @@
+alias work='cd ~/competitions/bgcoder/2016.05.27'
 # aliases
 alias c='cd'
 alias l='ls --color=auto'
