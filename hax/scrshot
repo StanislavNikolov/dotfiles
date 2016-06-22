@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+if [[ "$1" == "-s" ]]
+then
+	scrot ~/scrots/scrot_`date +"%F-%T"`.png -s && notify-send -t 1 "Screenshot captured"
+else
+	scrot ~/scrots/scrot_`date +"%F-%T"`.png && notify-send -t 1 "Screenshot captured"
+fi

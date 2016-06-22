@@ -1,5 +1,0 @@
-#!/bin/sh
-
-imlib2_grab /tmp/i3img.png
-convert /tmp/i3img.png -blur 6x3 /tmp/i3img.png
-
