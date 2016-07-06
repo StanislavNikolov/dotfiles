@@ -1,7 +1,7 @@
 alias work='cd ~/competitions/bgcoder/2016.05.27'
 # aliases
 alias c='cd'
-alias l='ls --color=auto'
+alias l='ls --color=auto --group-directories-first -X'
 alias lh='ls -lh'
 alias la='ls -a'
 alias lah='ls -lah'
