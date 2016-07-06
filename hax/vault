@@ -1,0 +1,10 @@
+#!/bin/env bash
+
+if [ "$1" == "open" ]
+then
+	sudo cryptsetup luksOpen /dev/sdb3 vault
+	mount /vault
+else
+	umount /vault
+	sudo cryptsetup luksClose vault
+fi
