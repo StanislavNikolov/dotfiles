@@ -175,8 +175,7 @@ bar {
 }
 
 # Turn on laptop's screen for some reason
-bindsym $mod+p exec xrandr --output LVDS1 --auto
-bindsym XF86Display exec xrandr --output LVDS1 --auto
+bindsym XF86Display exec xrandr --output LVDS1 --auto && notify-send "Screen recovered"
 
 bindsym $mod+Shift+d exec lock
 bindsym $mod+Shift+s exec lock suspend
@@ -188,3 +187,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -steps 20 -time 50 -inc 10
 
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+
+# Screenshot
+bindsym $mod+o exec scrshot

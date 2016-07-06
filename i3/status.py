@@ -20,7 +20,7 @@ status.register("battery",
     format="❤: {percentage:02.0f}%", interval=1)
 
 # CPU temperature
-# status.register("temp", color=white, format="{temp:.0f}°C")
+status.register("temp", color=white, format="{temp:.0f}°C")
 
 # CPU usage (text)
 # status.register("cpu_usage", format="▣ CPU: {usage_cpu1:02}% {usage_cpu1:02}% {usage_cpu2:02}% {usage_cpu3:02}%", interval=1)
