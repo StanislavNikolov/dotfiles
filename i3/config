@@ -20,17 +20,8 @@
 
 set $mod Mod4
 
-# Layout changer
-setxkbmap "us+bg(bds):2+group(alt_shift_toggle)"
-exec setxkbmap -option caps:escape
-
-# Enable per-window layout
-exec kbdd
-
-# Compositor and other
-exec compton -f -m 0.9 -O 0.06 -D 5 --blur-kern "3,3,0.0,1.0,0.0,1.0,-4.0,1.0,0,1.0"
-exec dunst
-exec setwallpaper
+# Compositor TODO move to .xinitrc
+exec compton -f -m 0.9 -O 0.06 -D 5 --blur-kern "3,3,0.0,1.0,0.0,1.0,-4.0,1.0,0,1.0" -b -CG
 
 # When multiple windows are shown in split-mode, don't display borders
 # hide_edge_borders both
@@ -125,10 +116,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3 session?' -b 'Exit i
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 2 px or 2 ppt
+        bindsym j resize grow height 2 px or 2 ppt
+        bindsym k resize shrink height 2 px or 2 ppt
+        bindsym l resize grow width 2 px or 2 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -187,6 +178,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -steps 20 -time 50 -inc 10
 
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
-
 # Screenshot
 bindsym $mod+o exec scrshot
+bindsym $mod+i exec scrshot -1 && to_telegram "/tmp/lastscr.png"

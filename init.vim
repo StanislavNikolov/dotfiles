@@ -10,8 +10,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-" Colorschemes
-Plug 'romainl/flattened'
+" Style
 Plug 'NLKNguyen/papercolor-theme'
 
 " Zero-conf plugins
@@ -20,7 +19,7 @@ Plug 'kien/ctrlp.vim'
 Plug 'pbrisbin/vim-alt-ctags'
 
 Plug 'Shougo/deoplete.nvim'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 
 call plug#end()
 " }}}
@@ -34,6 +33,8 @@ set shiftwidth=4
 set wrap
 set hidden
 set lazyredraw
+set colorcolumn=101
+set textwidth=100
 set fillchars=vert:\│
 " }}}
 " Fold settings {{{
@@ -43,6 +44,7 @@ set foldmethod=syntax
 " }}}
 " Color settings {{{
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+"set termguicolors
 set background=dark
 colorscheme PaperColor
 syntax on
@@ -103,7 +105,8 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ -g ""'
 " }}}
 " Other {{{
-"let b:ctags_command = "ctags -f '%f' -R *"
+let g:ctags_file = '.tags'
+set tags=./.tags
 nnoremap ; :
 
 " Visual Mode */# from Scrooloose
@@ -117,9 +120,6 @@ endfunction
 " Makes * work as expected in visual mode
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
-
-" Copies the current line, without the indentation
-nnoremap vv ^vg_
 
 let g:deoplete#enable_at_startup = 1
 " }}}
