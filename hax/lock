@@ -1,20 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
-tmpImgName=`mktemp`".png"
+TMPBG=/tmp/screen.png
+LOCK=$HOME/.hax/lock.png
+RES=$(xrandr | grep '*' | sed -E "s/[^0-9]*([0-9]+)x([0-9]+).*/\1*\2/")
 
-# Take a picture of the screen
-imlib2_grab $tmpImgName
+ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $LOCK \
+	-filter_complex "boxblur=3:2,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" \
+	-vframes 1 $TMPBG -loglevel quiet
 
-# Blur it a little bit
-convert $tmpImgName -blur 6x3 $tmpImgName
-
-# Start i3lock and put the blurred image as a background
-i3lock -fi $tmpImgName
+i3lock -i $TMPBG
+rm $TMPBG
 
 if [ "$1" == "suspend" ]
 then
 	systemctl suspend
 fi
-
-# Delete the junk
-rm $tmpImgName

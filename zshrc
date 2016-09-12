@@ -1,4 +1,3 @@
-alias work='cd ~/competitions/bgcoder/2016.05.27'
 # aliases
 alias c='cd'
 alias l='ls --color=auto --group-directories-first -X'
@@ -10,7 +9,7 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 
 alias vi=nvim
-alias duh='du -h --max-depth=1'
+alias duh='du -h --max-depth=1 | sort -hr'
 
 export EDITOR="nvim"
 export PATH="$HOME/.hax:$HOME/.local/bin:$PATH"
@@ -71,3 +70,24 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=33=01;31
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*:complete:*' use-cache 1
 zstyle ':completion:*' cache-path /tmp/.zshcache
+
+# Add fruit salad in the manuals
+man() {
+	env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+		man "$@"
+}
+
+wds() {
+	echo `pwd` > ~/.currentWorkDir
+}
+
+wdg() {
+	cd `cat ~/.currentWorkDir`
+}

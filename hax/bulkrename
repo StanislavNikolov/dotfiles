@@ -14,8 +14,8 @@ fi
 for file in $dir*;
 do
 	newName=`echo $file | sed "s}$toFind}$toReplace}g"`
-	echo $file $toFind $toReplace $newName
-	if [ "$newName" != "$file" ]
+	echo $file $newName
+	if [[ "$newName" != "$file" ]]
 	then
 		mv $file $newName
 	fi
