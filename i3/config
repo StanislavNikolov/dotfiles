@@ -130,14 +130,14 @@ bindsym $mod+d exec rofi -show run -bg $rofiBG -fg $rofiFG
 bindsym $mod+c exec rofi -show ssh -bg $rofiBG -fg $rofiFG -terminal $terminal
 
 # Colors
-set $gray_1 #2b2b2b
-set $gray_2 #191919
+set $gray_1 #404040
+set $gray_2 #1f1f1f
 set $gray_3 #111111
 
 set $abf #3a3a3a
 
-set $red	#B58900
-set $white	#839496
+set $red #B58900
+set $white #afbdbf
 set $black #000000
 
 # Window colors         border	backgr.	text	indicator

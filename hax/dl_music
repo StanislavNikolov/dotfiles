@@ -24,7 +24,7 @@ do
 
 	pushd . &> /dev/null
 	cd downloads/$name;
-	youtube-dl -x --audio-quality 0 --audio-format opus $i
+	youtube-dl -i -x --audio-quality 0 --audio-format opus $i
 	popd &> /dev/null
 done
 

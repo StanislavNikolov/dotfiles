@@ -9,10 +9,11 @@ alias ls='ls --color=auto'
 alias grep='grep --colour=auto'
 
 alias vi=nvim
-alias duh='du -h --max-depth=1 | sort -hr'
+alias duh='du -h --max-depth=1 | sort -h'
 
 export EDITOR="nvim"
-export PATH="$HOME/.hax:$HOME/.local/bin:$PATH"
+export GOPATH="$HOME/.go"
+export PATH="$HOME/.hax:$HOME/.local/bin:$PATH:/usr/local/bin:$GOPATH/bin"
 export LANG="en_US.utf8"
 
 bindkey -e
@@ -85,9 +86,9 @@ man() {
 }
 
 wds() {
-	echo `pwd` > ~/.currentWorkDir
+	echo `pwd` > $HOME/.currentWorkDir
 }
 
 wdg() {
-	cd `cat ~/.currentWorkDir`
+	cd `cat $HOME/.currentWorkDir`
 }
