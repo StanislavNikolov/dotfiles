@@ -1,12 +1,12 @@
 # aliases
+alias ls='ls --color=auto --group-directories-first -X'
+alias grep='grep --colour=auto'
+
 alias c='cd'
-alias l='ls --color=auto --group-directories-first -X'
+alias l='ls '
 alias lh='ls -lh'
 alias la='ls -a'
 alias lah='ls -lah'
-
-alias ls='ls --color=auto'
-alias grep='grep --colour=auto'
 
 alias vi=nvim
 alias duh='du -h --max-depth=1 | sort -h'
