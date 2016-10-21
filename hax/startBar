@@ -1,0 +1,5 @@
+#!/bin/env bash
+
+barData | ~/bar/lemonbar -g 1342x20+8+8 \
+	-f "Monospace:size=10" \
+	-f "FontAwesome:size=11"

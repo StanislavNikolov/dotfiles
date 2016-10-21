@@ -1,0 +1,150 @@
+#!/bin/env bash
+
+spacer="  "
+mountInfo=""
+batInfo=""
+memInfo=""
+volInfo=""
+dateInfo=""
+focusedDesktop=""
+counter=0
+
+updateMountInfo() {
+	line=`df -H | grep /home$`
+	all=`echo "$line" | awk '{print $2}'`
+	used=`echo "$line" | awk '{print $3}'`
+	mountInfo="$used/$all"
+}
+updateBatteryInfo() {
+	cap=`cat /sys/class/power_supply/BAT0/capacity`
+	stat=`cat /sys/class/power_supply/BAT0/status`
+	color="%{F#6f6}"
+
+	if [[ "$stat" == "Discharging" ]]; then
+		if [ $cap -gt 30 ]; then
+			color="%{F#66f}"
+		else
+			color="%{F#f44}"
+		fi
+	fi
+
+	icon=""
+	case $((cap/20)) in
+	3) icon="" ;;
+	2) icon="" ;;
+	1) icon="" ;;
+	0) icon="" ;;
+	*) icon="" ;;
+	esac
+
+	batInfo="$color$icon%{F#fff} $cap"
+}
+updateMemoryInfo() {
+	line=`free -m | head -n 2 | tail -n 1`
+	all=`echo $line | awk '{print $2}'`
+	used=`echo $line | awk '{print $3}'`
+	memInfo="`echo \"100 * $used / $all\" | bc`"
+}
+updateVolumeInfo() {
+	volInfo=`pactl list sinks | grep Volume | head -n 1 | awk '{print $5}'`
+}
+updateDateInfo() {
+	dateInfo=`date '+%d-%m %R'`
+}
+getWMInfo() {
+	i=1;
+	echo -n " "
+	for ((;i<=9;++i)); do
+		if [ "$focusedDesktop" == "$i" ]; then
+			break
+		fi
+		echo -n "$i "
+	done
+	echo -n "%{B#666}%{F#000} $focusedDesktop %{B#000}%{F#fff} "
+	if [ "$focusedDesktop" != "0" ]; then
+		for ((i=$i+1;i<=9;++i)); do
+			echo -n "$i "
+		done
+		echo -n "0 "
+	fi
+}
+
+#updateMountInfo
+updateBatteryInfo
+updateMemoryInfo
+updateVolumeInfo
+updateDateInfo
+getWMInfo
+
+export tmp=`mktemp`
+bspc subscribe desktop_focus | (while true; do read p; echo ${p: -1} > $tmp; done) &
+
+while true; do
+	((counter++))
+	newText=false
+
+	old=$focusedDesktop
+	read focusedDesktop < $tmp
+	if [ "$old" != "$focusedDesktop" ]; then
+		wmInfo=$(getWMInfo)
+		newText=true
+	fi
+
+	if [ $((counter%20)) -eq 0 ]; then
+		oldBatInfo=$batInfo
+		oldMemInfo=$memInfo
+		oldDateInfo=$dateInfo
+
+		updateBatteryInfo
+		updateMemoryInfo
+		updateDateInfo
+
+		if [ "$oldBatInfo" != "$batInfo" ]; then newText=true; fi
+		if [ "$oldMemInfo" != "$memInfo" ]; then newText=true; fi
+		if [ "$oldDateInfo" != "$dateInfo" ]; then newText=true; fi
+	fi
+	if [ $((counter%4)) -eq 0 ]; then
+		oldVolInfo=$volInfo
+		updateVolumeInfo
+		if [ "$oldVolInfo" != "$volInfo" ]; then newText=true; fi
+	fi
+
+	if [ $((counter%200)) -eq 0 ]; then
+		#oldMountInfo=$mountInfo
+		#updateMountInfo
+		#if [ "$oldMountInfo" != "$mountInfo" ]; then newText=true; fi
+
+		counter=0
+	fi
+
+	if [ "$newText" = true ]; then
+		##### left
+		echo -n "%{l}"
+		echo -n "$wmInfo"
+
+		##### center
+		echo -n "%{c}"
+
+		# date
+		echo -n "$spacer$dateInfo$spacer"
+
+		##### right
+		echo -n "%{r}"
+
+		# vol
+		echo -n "$spacer $volInfo$spacer"
+
+		# mem
+		echo -n "$spacer $memInfo%$spacer"
+
+		# bat
+		echo -n "$spacer$batInfo%$spacer"
+
+		# hd
+		#echo -n "$spacer⛁ $mountInfo$spacer"
+
+		echo ""
+	fi
+
+	sleep 0.05
+done
