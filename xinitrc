@@ -18,7 +18,7 @@ setxkbmap "us+bg(bds):2+group(alt_shift_toggle)"
 kbdd
 
 startBar &
-compton -f -m 0.9 -o 0.06 -d 5 --blur-kern "3,3,0.0,1.0,0.0,1.0,-4.0,1.0,0,1.0" -c &
+compton --config ~/.config/compton/compton &
 
 bspwm
 

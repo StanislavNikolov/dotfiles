@@ -6,7 +6,7 @@ batInfo=""
 memInfo=""
 volInfo=""
 dateInfo=""
-focusedDesktop=""
+wmHash=""
 counter=0
 
 updateMountInfo() {
@@ -52,40 +52,44 @@ updateDateInfo() {
 	dateInfo=`date '+%d-%m %R'`
 }
 getWMInfo() {
-	i=1;
-	echo -n " "
-	for ((;i<=9;++i)); do
-		if [ "$focusedDesktop" == "$i" ]; then
-			break
+	echo -n " %{U#8bb745}"
+	for i in 1 2 3 4 5 6 7 8 9 0; do
+		color=0
+		underline=0
+		grep -q -E "(F|O)$i" < $tmp
+		if [ "$?" == "0" ]; then
+			echo -n "%{F#8bb745}"
+			color=1
 		fi
-		echo -n "$i "
+		grep -q -E "(o|O)$i" < $tmp
+		if [ "$?" == "0" ] ; then
+			echo -n "%{+u}"
+			underline=1
+		fi
+		echo -n "$i"
+		if [ "$color" == "1" ]; then
+			echo -n "%{F#ffffff}"
+		fi
+		if [ "$underline" == "1" ]; then
+			echo -n "%{-u}"
+		fi
+		echo -n " "
 	done
-	echo -n "%{B#666}%{F#000} $focusedDesktop %{B#000}%{F#fff} "
-	if [ "$focusedDesktop" != "0" ]; then
-		for ((i=$i+1;i<=9;++i)); do
-			echo -n "$i "
-		done
-		echo -n "0 "
-	fi
 }
 
-#updateMountInfo
-updateBatteryInfo
-updateMemoryInfo
-updateVolumeInfo
-updateDateInfo
-getWMInfo
-
 export tmp=`mktemp`
-bspc subscribe desktop_focus | (while true; do read p; echo ${p: -1} > $tmp; done) &
+echo "1" > $tmp
+#bspc subscribe desktop_focus | (while true; do read p; echo ${p: -1} > $tmp; done) &
+bspc subscribe | (while true; do read p; echo "$p" > $tmp; done) &
 
 while true; do
 	((counter++))
 	newText=false
 
-	old=$focusedDesktop
-	read focusedDesktop < $tmp
-	if [ "$old" != "$focusedDesktop" ]; then
+	old=$wmHash
+	wmHash=`md5sum $tmp`
+
+	if [ "$old" != "$wmHash" ]; then
 		wmInfo=$(getWMInfo)
 		newText=true
 	fi
@@ -118,6 +122,8 @@ while true; do
 	fi
 
 	if [ "$newText" = true ]; then
+		echo -n "%{B#000}"
+
 		##### left
 		echo -n "%{l}"
 		echo -n "$wmInfo"

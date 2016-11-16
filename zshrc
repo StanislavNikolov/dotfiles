@@ -30,7 +30,8 @@ fi
 autoload -U compinit
 compinit
 
-PS1="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
+#PS1="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
+PS1_REAL="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
 # PS2="%B %_ %F{blue}>%f%b "
 
 setopt HIST_IGNORE_DUPS
@@ -40,6 +41,7 @@ SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
 setopt auto_cd
+setopt histignorespace # commands starting with ' ' are not saved
 # TODO research
 # setopt complete_in_word
 # setopt extended_glob
@@ -50,6 +52,9 @@ setopt auto_cd
 # setopt no_list_ambiguous
 # setopt rmstarsilent
 # setopt auto_param_slash
+
+set -o vi
+KEYTIMEOUT=1 # fix the annoying delay between switching modes
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
@@ -92,3 +97,13 @@ wds() {
 wdg() {
 	cd `cat $HOME/.currentWorkDir`
 }
+
+terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
+function zle-line-init zle-keymap-select {
+    PS1_2="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    PS1="%{$terminfo_down_sc$PS1_2$terminfo[rc]%}% $PS1_REAL"
+    zle reset-prompt
+}
+preexec () { print -rn -- $terminfo[el]; }
+zle -N zle-line-init
+zle -N zle-keymap-select

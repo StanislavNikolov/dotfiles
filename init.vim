@@ -12,13 +12,14 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Style
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'morhetz/gruvbox'
 
 " Zero-conf plugins
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'kien/ctrlp.vim'
 Plug 'pbrisbin/vim-alt-ctags'
 
-Plug 'Shougo/deoplete.nvim'
+"Plug 'Shougo/deoplete.nvim'
 "Plug 'itchyny/lightline.vim'
 
 call plug#end()

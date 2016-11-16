@@ -45,10 +45,10 @@ super + shift + c
 	bspc node -c
 
 # basic presel
-super + v
-	bspc node -p south; bspc node -o 0.5;
-super + b
-	bspc node -p east; bspc node -o 0.5;
+#super + v
+	#bspc node -p south; bspc node -o 0.5;
+#super + b
+	#bspc node -p east; bspc node -o 0.5;
 
 # goto, sendto desktop
 super + {1,2,3,4,5,6,7,8,9,0}
@@ -66,8 +66,11 @@ super + r : k
 super + r : l
 	bspc node @west -r -20 || bspc node @east -r -20
 
-# toggle floating
+# toggle fullscrean
 super + f
+    bspc node --state \~fullscreen
+# toggle floating
+super + shift + f
 	bspc node -t '~floating'
 
 # move, resize when floating
@@ -92,6 +95,8 @@ super + e
 # sel parent
 super + a
 	bspc node -f @parent
+super + s
+	bspc node -f @first
 
 # flip
 super + o
@@ -109,10 +114,6 @@ super + shift + k
   if ! bspc node -s north.local; then bspc node -m north && bspc node $(bspc query -N -n last) -f; fi
 super + shift + j
   if ! bspc node -s south.local; then bspc node -m south && bspc node $(bspc query -N -n last) -f; fi
-
-# preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
 
 # presel dir
 super + ctrl + {h,j,k,l}

@@ -1,8 +1,10 @@
 #!/bin/env bash
 
 bspc config focus_follows_pointer true
-bspc config top_padding 28
+bspc config remove_disabled_monitors true
+bspc config remove_unplugged_monitors true
 
+bspc config top_padding 28
 bspc config border_width 3
 bspc config window_gap 12
 
