@@ -19,7 +19,9 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'kien/ctrlp.vim'
 Plug 'pbrisbin/vim-alt-ctags'
 
-"Plug 'Shougo/deoplete.nvim'
+Plug 'w0rp/ale'
+
+Plug 'Shougo/deoplete.nvim'
 "Plug 'itchyny/lightline.vim'
 
 call plug#end()
@@ -44,8 +46,8 @@ set foldlevelstart=6
 set foldmethod=syntax
 " }}}
 " Color settings {{{
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-"set termguicolors
+"let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set termguicolors
 set background=dark
 colorscheme PaperColor
 syntax on
@@ -106,6 +108,8 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ -g ""'
 " }}}
 " Other {{{
+nmap <leader>y mZgg"+yG'Zk<CR>
+
 let g:ctags_file = '.tags'
 set tags=./.tags
 nnoremap ; :
@@ -123,6 +127,15 @@ vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
 
 let g:deoplete#enable_at_startup = 1
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '%s'
+
+let g:ale_linters = {
+\   'cpp': ['cppcheck'],
+\}
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0

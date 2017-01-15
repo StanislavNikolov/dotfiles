@@ -10,20 +10,16 @@
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 xrdb ~/.Xresources
 
-sxhkd -t 1 &
+#sxhkd -t 1 &
 
 setwallpaper
 setxkbmap -option caps:escape
 setxkbmap "us+bg(bds):2+group(alt_shift_toggle)"
-kbdd
 
-startBar &
-compton --config ~/.config/compton/compton &
+#compton --config ~/.config/compton/compton &
 
-bspwm
+i3
 
-#./windowchef/windowchef
-#i3
 #if [[ "$1" == "" ]]
 #then
 #	i3

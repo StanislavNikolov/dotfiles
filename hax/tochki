@@ -1,0 +1,38 @@
+#!/bin/bash
+
+gentest="$1"
+correct="$2"
+toTest="$3"
+threads="$4"
+
+if [[ "$threads" == "" ]]; then
+	threads=4
+fi
+
+test() {
+	t="$1"
+
+	while true; do
+		"$gentest" > .test."$t"
+		"$correct" < .test."$t" > .test."$t".c
+		"$toTest" < .test."$t" > .test."$t".t
+
+		diff -q .test."$t".c .test."$t".t
+		if [[ "$?" != "0" ]]; then
+			echo "[ broke on thread $t ]"
+			exit 0
+		fi
+
+		echo -n '.'
+	done
+}
+
+for ((t=0;t<threads;t++)); do
+	test $t &
+done
+
+for job in `jobs -p`
+do
+	wait $job
+done
+
