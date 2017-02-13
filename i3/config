@@ -73,6 +73,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
+# the opposite of ^
+bindsym $mod+shift+a focus child
 
 # BEST THING EVER
 bindsym $mod+n move scratchpad
@@ -177,3 +179,5 @@ bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
 # Screenshot
 bindsym $mod+o exec scrshot
 bindsym $mod+i exec scrshot -1 && to_telegram "/tmp/lastscr.png"
+
+bindsym $mod+shift+w sticky toggle

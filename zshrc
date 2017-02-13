@@ -10,6 +10,7 @@ alias lah='ls -lah'
 
 alias vi=nvim
 alias duh='du -h --max-depth=1 | sort -h'
+alias df='df --si'
 
 export EDITOR="nvim"
 export GOPATH="$HOME/.go"
@@ -107,3 +108,12 @@ function zle-line-init zle-keymap-select {
 preexec () { print -rn -- $terminfo[el]; }
 zle -N zle-line-init
 zle -N zle-keymap-select
+
+upload() {
+	echo "Uploading..."
+	if [[ "$1" == "" ]]; then # stdin
+		curl -F c=@- https://ptpb.pw/
+	else
+		curl -F c=@- https://ptpb.pw/ < "$1"
+	fi
+}

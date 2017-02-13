@@ -9,10 +9,15 @@ ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $LOCK \
 	-filter_complex "boxblur=3:2,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" \
 	-vframes 1 $TMPBG -loglevel quiet
 
-i3lock -i $TMPBG
-rm $TMPBG
+setxkbmap "us"
 
 if [ "$1" == "suspend" ]
 then
+	i3lock -i $TMPBG
 	systemctl suspend
+else
+	i3lock -ni $TMPBG
 fi
+
+rm $TMPBG
+setxkbmap "us+bg(bds):2+group(alt_shift_toggle)"

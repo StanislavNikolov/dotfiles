@@ -13,12 +13,14 @@ xrdb ~/.Xresources
 #sxhkd -t 1 &
 
 setwallpaper
-setxkbmap -option caps:escape
-setxkbmap "us+bg(bds):2+group(alt_shift_toggle)"
 
 #compton --config ~/.config/compton/compton &
 
 i3
+
+# replaced with .xorg.conf
+#setxkbmap -option caps:escape
+#setxkbmap "us+bg(bds):2+group(alt_shift_toggle)"
 
 #if [[ "$1" == "" ]]
 #then
