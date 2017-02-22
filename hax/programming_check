@@ -9,19 +9,20 @@ maxPoints=0
 fails=0
 
 function print {
-	if [[ "$STATUS" == "min" ]]
-	then
-		echo -n $1
-	else
-		output="Unknown"
-		case "$1" in
-			'T') output="Timeout";;
-			'M') output="Memory Limit";;
-			'x') output="Wrong Answer";;
-			'.') output="OK";;
-		esac
-		echo $output
-	fi
+	echo -n $1
+	#if [[ "$STATUS" == "min" ]]
+	#then
+		#echo -n $1
+	#else
+		#output="Unknown"
+		#case "$1" in
+			#'T') output="Timeout";;
+			#'M') output="Memory Limit";;
+			#'x') output="Wrong Answer";;
+			#'.') output="OK";;
+		#esac
+		#echo $output
+	#fi
 }
 
 function fail_timeout {

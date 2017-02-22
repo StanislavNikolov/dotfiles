@@ -117,3 +117,12 @@ upload() {
 		curl -F c=@- https://ptpb.pw/ < "$1"
 	fi
 }
+
+qfind() {
+	all=`find`
+	for arg in "$@"
+	do
+		all=`grep "$arg" <<< "$all"`
+	done
+	echo "$all"
+}
