@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+d=`date -Iseconds`
+borg create backup@stjo.tk:home::"$d" ~/

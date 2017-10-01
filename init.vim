@@ -13,16 +13,24 @@ call plug#begin('~/.config/nvim/plugged')
 " Style
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
+Plug 'dylanaraps/wal.vim'
+Plug 'sjl/badwolf'
+Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
 
 " Zero-conf plugins
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'kien/ctrlp.vim'
 Plug 'pbrisbin/vim-alt-ctags'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'w0rp/ale'
 
-Plug 'Shougo/deoplete.nvim'
+"Plug 'Shougo/deoplete.nvim'
 "Plug 'itchyny/lightline.vim'
+Plug 'junegunn/goyo.vim'
+Plug '907th/vim-auto-save'
+Plug 'reedes/vim-pencil'
 
 call plug#end()
 " }}}
@@ -37,8 +45,9 @@ set wrap
 set hidden
 set lazyredraw
 set colorcolumn=101
-set textwidth=100
+set scrolloff=9999
 set fillchars=vert:\│
+filetype plugin on 
 " }}}
 " Fold settings {{{
 set foldenable
@@ -49,6 +58,8 @@ set foldmethod=syntax
 set termguicolors
 set background=dark
 colorscheme PaperColor
+"colorscheme badwolf
+"colorscheme wal
 syntax on
 
 " Make the background transparent
@@ -61,7 +72,7 @@ nmap <leader>l :source ~/.config/nvim/init.vim <CR>
 nmap <leader>s :w <CR>
 nmap <leader>q :q <CR>
 nmap <leader>a :bd <CR>
-nmap <leader>t :term <CR>
+nmap <leader>t :!gnome-terminal <CR>
 nmap <leader>o :CtrlPBuffer <CR>
 nmap <silent><leader>n :nohlsearch <CR>
 " }}}
@@ -70,28 +81,35 @@ nmap <silent><leader>n :nohlsearch <CR>
 nnoremap j gj
 nnoremap k gk
 
-nnoremap H ^
-nnoremap L $
-map <tab> %
+nnoremap <tab> %
 
 nnoremap N Nzzzv
 nnoremap n nzzzv
 
 " Lets me cycle through splits with Alt+motion
-noremap <A-h> <C-w>h<CR>
-noremap <A-j> <C-w>j<CR>
-noremap <A-k> <C-w>k<CR>
-noremap <A-l> <C-w>l<CR>
-" }}}
-" <leader>r settings {{{
-autocmd filetype python nnoremap <leader>r :w <bar> exec '!python '.shellescape('%')<CR>
-autocmd filetype c nnoremap <leader>r :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-autocmd filetype cpp nnoremap <leader>r :w <bar> exec '!g++ '.shellescape('%').' -O2 -std=c++11 -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-autocmd filetype js nnoremap <leader>r :w <bar> exec '!node '.shellescape('%')<CR>
+noremap <A-h> <C-w>h<CR>k
+noremap <A-j> <C-w>j<CR>k
+noremap <A-k> <C-w>k<CR>k
+noremap <A-l> <C-w>l<CR>k
 " }}}
 " Language specific {{{
-autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
-autocmd Filetype rust setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+"autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+"autocmd Filetype rust setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType cpp call IoStream()
+fu! IoStream()
+    if line("$") == 1
+        call append(0, "#include <iostream>")
+        call append(1, "#define D(x) std::cout << __LINE__ << ' ' << #x << \" = \" << x << std::endl;")
+        call append(2, "")
+        call append(3, "int main() {")
+        call append(4, "#ifndef LOCAL_STJO")
+        call append(5, "    std::ios_base::sync_with_stdio(false);")
+        call append(6, "    std::cin.tie(nullptr);")
+        call append(7, "#endif")
+        call append(8, "    return 0;")
+        call append(9, "}")
+    endif
+endfu
 " }}}
 " CtrlP {{{
 " I kinda use Ctrl+P for compliteon, soooo....
@@ -107,7 +125,7 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
       \ -g ""'
 " }}}
 " Other {{{
-nmap <leader>y mZgg"+yG'Zk<CR>
+nnoremap <leader>y mZgg"+yG'Zk<CR>
 
 let g:ctags_file = '.tags'
 set tags=./.tags
@@ -134,6 +152,13 @@ let g:ale_echo_msg_format = '%s'
 let g:ale_linters = {
 \   'cpp': ['cppcheck'],
 \}
+
+let g:pencil#wrapModeDefault = 'soft'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
 
 " }}}
 

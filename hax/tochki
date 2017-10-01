@@ -1,29 +1,35 @@
 #!/bin/bash
 
 gentest="$1"
-correct="$2"
-toTest="$3"
+bin1="$2"
+bin2="$3"
 threads="$4"
 
 if [[ "$threads" == "" ]]; then
 	threads=4
 fi
 
+tmp=`mktemp -d -t tochki_XXXX`
+echo "Starting in $tmp..."
+
 test() {
-	t="$1"
+	dir="$tmp/$1"
+	mkdir "$dir"
 
 	while true; do
-		"$gentest" > .test."$t"
-		"$correct" < .test."$t" > .test."$t".c
-		"$toTest" < .test."$t" > .test."$t".t
+		"$gentest" > "$dir/test"
+		"$bin1" < "$dir/test" > "$dir/b1"
+		"$bin2" < "$dir/test" > "$dir/b2"
 
-		diff -q .test."$t".c .test."$t".t
+		diff -q "$dir/b1" "$dir/b2" > /dev/null
 		if [[ "$?" != "0" ]]; then
-			echo "[ broke on thread $t ]"
+			printf "\x1b[K"
+			echo "[ diff $tmp $1 ]"
+			echo "."
 			exit 0
 		fi
 
-		echo -n '.'
+		flock "$tmp/status" -c "printf '.' >> $tmp/status && printf '\x1b[1A\x1b[K' && wc -c $tmp/status"
 	done
 }
 
@@ -31,8 +37,6 @@ for ((t=0;t<threads;t++)); do
 	test $t &
 done
 
-for job in `jobs -p`
-do
+for job in `jobs -p`; do
 	wait $job
 done
-
