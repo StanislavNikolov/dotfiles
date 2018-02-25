@@ -45,7 +45,7 @@ set wrap
 set hidden
 set lazyredraw
 set colorcolumn=101
-set scrolloff=9999
+set scrolloff=10
 set fillchars=vert:\│
 filetype plugin on 
 " }}}

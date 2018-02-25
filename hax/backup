@@ -2,3 +2,6 @@
 
 d=`date -Iseconds`
 borg create backup@stjo.tk:home::"$d" ~/
+d2=`date -Iseconds`
+
+echo "$d $d2"
