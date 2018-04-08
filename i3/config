@@ -15,7 +15,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
 
 ########## Keybindings ##########
-bindsym $mod+Shift+s exec i3lock # Easier locking
+bindsym $mod+Shift+s exec ~/.hax/lock # Easier locking
 
 ### Backlight ###
 # Note: If light doesn't work, install xbacklight and 1) uncomment the two lines below.
@@ -45,7 +45,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mu
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec sakura
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -166,13 +166,13 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-#bar {
-#		#output VGA-1
-#        #status_command i3blocks
-#        position top
-#}
+bar {
+		#output VGA-1
+        status_command i3blocks
+        position top
+}
 
-exec polybar example
+#exec polybar example
 
 #bar {
 		#output HDMI-1
@@ -197,3 +197,5 @@ for_window [title="Preferences$"] floating enable
 #smart_gaps on
 #gaps inner 5
 #gaps outer 5
+
+exec bash ~/.autorun

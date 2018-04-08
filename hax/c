@@ -9,7 +9,7 @@ if [[ "$source" == "" ]]; then
 fi
 
 #echo "==== Compilation started ===="
-c++ -std=c++14 -Wpedantic -lpthread -O2 "$source.cpp" -o "$source" -DLOCAL_STJO
+c++ -std=c++17 -Wpedantic -lpthread -O2 "$source.cpp" -o "$source" -DLOCAL_STJO
 #echo "==== Compilation ended ===="
 
 #if [[ "$input" == "" ]]; then

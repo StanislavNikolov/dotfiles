@@ -2,17 +2,21 @@
 alias ls='ls --color=auto --group-directories-first -X'
 alias grep='grep --colour=auto'
 
-alias c='cd'
+#alias c='cd'
 alias l='ls '
 alias lh='ls -lh'
 alias la='ls -a'
 alias lah='ls -lah'
 
-alias vi=nvim
+#alias vi="nvim"
+alias vi="echo kak"
 alias duh='du -h --max-depth=1 | sort -h'
 alias df='df --si'
+alias kak='~/kakoune/src/kak'
 
-export EDITOR="nvim"
+export EDITOR=nvim
+export VISUAL=nvim
+export TERMINAL=sakura
 export GOPATH="$HOME/.go"
 export PATH="$HOME/.hax:$HOME/.local/bin:$PATH:/usr/local/bin:$GOPATH/bin"
 export LANG="en_US.utf8"
@@ -54,8 +58,8 @@ setopt histignorespace # commands starting with ' ' are not saved
 # setopt rmstarsilent
 # setopt auto_param_slash
 
-set -o vi
-KEYTIMEOUT=1 # fix the annoying delay between switching modes
+#set -o vi
+#KEYTIMEOUT=1 # fix the annoying delay between switching modes
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
@@ -101,7 +105,7 @@ wdg() {
 
 terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
 function zle-line-init zle-keymap-select {
-    PS1_2="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    #PS1_2="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
     PS1="%{$terminfo_down_sc$PS1_2$terminfo[rc]%}% $PS1_REAL"
     zle reset-prompt
 }
@@ -126,3 +130,5 @@ qfind() {
 	done
 	echo "$all"
 }
+
+TERMINAL=sakura
