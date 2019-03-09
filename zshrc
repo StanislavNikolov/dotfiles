@@ -12,7 +12,6 @@ alias lah='ls -lah'
 alias vi="echo kak"
 alias duh='du -h --max-depth=1 | sort -h'
 alias df='df --si'
-alias kak='~/kakoune/src/kak'
 
 export EDITOR=nvim
 export VISUAL=nvim
@@ -115,10 +114,11 @@ zle -N zle-keymap-select
 
 upload() {
 	echo "Uploading..."
+	# TODO ptpb.pw died around Q1 2019, check for replacement
 	if [[ "$1" == "" ]]; then # stdin
-		curl -F c=@- https://ptpb.pw/
+        curl -F"file=@-" https://0x0.st
 	else
-		curl -F c=@- https://ptpb.pw/ < "$1"
+		curl -F"file=@$1" https://0x0.st
 	fi
 }
 
@@ -132,3 +132,15 @@ qfind() {
 }
 
 TERMINAL=sakura
+
+asd() {
+	fname="$1"
+	if [[ "$fname" == "" ]]; then
+		fname='a.cpp'
+	fi
+	if [ -f "$fname" ]; then
+		echo "$fname exists" 2>&1
+		return 1
+	fi
+	cp ~/templates/empty.cpp "$fname"
+}

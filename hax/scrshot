@@ -1,13 +1,15 @@
 #!/bin/env bash
 
+params="-q 80"
+
 if [[ "$1" == "-s" ]]
 then
-	scrot ~/scrots/scrot_`date +"%F-%T"`.png -s && notify-send -t 1 "Screenshot captured"
+	scrot ~/scrots/`date +"%F-%T"`.png $params -s && notify-send -t 2000 "Screenshot captured"
 else
 	if [[ "$1" == "-1" ]]
 	then
-		scrot /tmp/lastscr.png && notify-send -t 1 "Screenshot captured"
+		scrot /tmp/lastscr.png $params && notify-send -t 1 "Screenshot captured"
 	else
-		scrot ~/scrots/scrot_`date +"%F-%T"`.png && notify-send -t 1 "Screenshot captured"
+		scrot ~/scrots/`date +"%F-%T"`.png $params && notify-send -t 1 "Screenshot captured"
 	fi
 fi
