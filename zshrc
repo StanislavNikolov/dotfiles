@@ -114,10 +114,11 @@ zle -N zle-keymap-select
 
 upload() {
 	echo "Uploading..."
+	# TODO ptpb.pw died around Q1 2019, check for replacement
 	if [[ "$1" == "" ]]; then # stdin
-		curl -F c=@- https://ptpb.pw/
+        curl -F"file=@-" https://0x0.st
 	else
-		curl -F c=@- https://ptpb.pw/ < "$1"
+		curl -F"file=@$1" https://0x0.st
 	fi
 }
 

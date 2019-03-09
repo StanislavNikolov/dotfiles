@@ -32,7 +32,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
 
 ### Other ###
-bindsym Print exec scrot -q 100
+bindsym $mod+o exec "sleep 0.1; ~/.hax/scrshot -s"
 
 ### Sound ###
 # Raise Volume
@@ -45,7 +45,8 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mu
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec sakura
+bindsym $mod+Return exec ~/.local/bin/alacritty
+#bindsym $mod+Return exec sakura
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -199,3 +200,5 @@ for_window [title="Preferences$"] floating enable
 #gaps outer 5
 
 exec bash ~/.autorun
+
+bindsym $mod+Shift+w sticky toggle
