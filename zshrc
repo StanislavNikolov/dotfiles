@@ -12,7 +12,6 @@ alias lah='ls -lah'
 alias vi="echo kak"
 alias duh='du -h --max-depth=1 | sort -h'
 alias df='df --si'
-alias kak='~/kakoune/src/kak'
 
 export EDITOR=nvim
 export VISUAL=nvim
@@ -132,3 +131,15 @@ qfind() {
 }
 
 TERMINAL=sakura
+
+asd() {
+	fname="$1"
+	if [[ "$fname" == "" ]]; then
+		fname='a.cpp'
+	fi
+	if [ -f "$fname" ]; then
+		echo "$fname exists" 2>&1
+		return 1
+	fi
+	cp ~/templates/empty.cpp "$fname"
+}
