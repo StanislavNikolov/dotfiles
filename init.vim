@@ -1,5 +1,27 @@
 " Stanislav Ch. Nikolov <stanislav.ltb@gmail.com>
 
+
+" Basic nvim settings {{{
+let mapleader = " "
+set autoindent
+set showcmd
+set number
+set relativenumber
+set nowrap
+filetype plugin on
+set tabstop=4
+set shiftwidth=4
+ " no stupid python filetype shit, don't overwrite my tabstop settings
+let g:python_recommended_style=0
+set colorcolumn=101
+set scrolloff=10
+set foldenable
+set foldlevelstart=6
+set foldmethod=syntax
+
+set list
+set listchars=tab:··
+" }}}
 " Plugins {{{
 " Install plug.vim if missing
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
@@ -20,43 +42,31 @@ Plug 'nanotech/jellybeans.vim'
 " Zero-conf plugins
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'pbrisbin/vim-alt-ctags'
+Plug 'pbrisbin/vim-alt-ctags' " automatically runs ctags on any git controlled file
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/goyo.vim'
 Plug '907th/vim-auto-save'
+Plug 'tpope/vim-surround'
 
 " Plugins with config
 Plug 'majutsushi/tagbar'
-nnoremap <F8> :TagbarToggle<CR>
+nmap <leader>l :TagbarToggle<CR>
 
-Plug 'w0rp/ale'
+" nerdtree
+Plug 'scrooloose/nerdtree'
+nmap <leader>h :NERDTreeToggle<CR>
+
+Plug 'dense-analysis/ale'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '%s'
-
-let g:ale_linters = {
-\   'cpp': ['cppcheck'],
-\}
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 
 call plug#end()
-" }}}
-" Basic nvim settings {{{
-set autoindent
-set showcmd
-set number
-set relativenumber
-set tabstop=4
-set shiftwidth=4
-set wrap
-set colorcolumn=101
-set scrolloff=10
-filetype plugin on
-set foldenable
-set foldlevelstart=6
-set foldmethod=syntax
 " }}}
 " Color settings {{{
 " set termguicolors
@@ -69,12 +79,8 @@ colorscheme gruvbox
 " highlight NonText guibg=none
 " }}}
 " Other Leader keybindings {{{
-let mapleader = " "
-nmap <leader>l :source ~/.config/nvim/init.vim <CR>
-nmap <leader>s :w <CR>
-nmap <leader>q :q <CR>
 nmap <leader>a :bd <CR>
-nmap <leader>t :!gnome-terminal <CR>
+nmap <leader>t :!alacritty & <CR><CR>
 nmap <leader>o :CtrlPBuffer <CR>
 nmap <silent><leader>n :nohlsearch <CR>
 " }}}
