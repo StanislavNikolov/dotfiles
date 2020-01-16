@@ -25,7 +25,7 @@ set listchars=tab:··
 " Plugins {{{
 " Install plug.vim if missing
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config//nvim/autoload/plug.vim --create-dirs
+	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
@@ -90,7 +90,7 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap <tab> %
-nnoremap <leader><leader> /<++><CR>cw
+nnoremap <leader><leader> /<++><CR>c4l
 
 nnoremap N Nzzzv
 nnoremap n nzzzv
@@ -102,19 +102,20 @@ noremap <A-k> <C-w>k<CR>k
 noremap <A-l> <C-w>l<CR>k
 " }}}
 " Other {{{
+autocmd FileType markdown set wrap
 autocmd FileType cpp call Add_default_competitive_code()
 fu! Add_default_competitive_code()
     if line("$") == 1
         call append(0, [ "#include <iostream>"
-		           \   , ""
-                   \   , "using std::cin; using std::cout; using std::cerr;"
+                   \   , ""
+                   \   , "using std::cin; using std::cout; using std::cerr; using std::endl;"
                    \   , "#define D(x) std::cout << __LINE__ << ' ' << #x << \" = \" << x << std::endl;"
                    \   , ""
                    \   , "int main() {"
-                   \   , "    std::ios_base::sync_with_stdio(false);"
-                   \   , "    std::cin.tie(nullptr);"
-		           \   , "    <++>"
-                   \   , "    return 0;"
+                   \   , "	std::ios_base::sync_with_stdio(false);"
+                   \   , "	std::cin.tie(nullptr);"
+                   \   , "	<++>"
+                   \   , "	return 0;"
                    \   , "}" ])
     endif
 endfu
@@ -137,6 +138,18 @@ endfunction
 " Makes * work as expected in visual mode
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>//<CR><c-o>
 vnoremap # :<C-u>call <SID>VSetSearch()<CR>??<CR><c-o>
+
+autocmd VimEnter * call NERDTreeAddKeyMap({
+        \ 'key': 'w',
+        \ 'callback': 'NERDTreeOpenFileInNewTerminalWindow',
+        \ 'quickhelpText': 'open file in new (wl/x11) terminal' })
+
+function! NERDTreeOpenFileInNewTerminalWindow()
+    let n = g:NERDTreeFileNode.GetSelected()
+    if n != {}
+        silent execute '! alacritty -e nvim' shellescape(n.path.str(), 1) '&'
+    endif
+endfunction
 
 " }}}
 
