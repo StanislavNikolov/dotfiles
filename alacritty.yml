@@ -187,7 +187,7 @@ tabspaces: 4
 colors:
   primary:
     background: '0x282828'
-    foreground: '0xdfbf8e'
+    foreground: '0xefcfbe'
 
   normal:
     black:   '0x665c54'
