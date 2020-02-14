@@ -43,7 +43,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pbrisbin/vim-alt-ctags' " automatically runs ctags on any git controlled file
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/goyo.vim'
 Plug '907th/vim-auto-save'
 Plug 'tpope/vim-surround'
@@ -56,12 +56,12 @@ nmap <leader>l :TagbarToggle<CR>
 Plug 'scrooloose/nerdtree'
 nmap <leader>h :NERDTreeToggle<CR>
 
-Plug 'dense-analysis/ale'
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '%s'
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
+" Plug 'dense-analysis/ale'
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '%s'
+" nmap <silent> <leader>aj :ALENext<cr>
+" nmap <silent> <leader>ak :ALEPrevious<cr>
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
