@@ -16,3 +16,5 @@ ln -s $(pwd)/alacritty.yml ~/.config/alacritty/alacritty.yml
 
 mkdir -p ~/.config/i3
 ln -s $(pwd)/i3_config ~/.config/i3/config
+
+ln -s $(pwd)/autorun ~/.autorun
