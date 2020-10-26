@@ -1,7 +1,0 @@
-#!/bin/env bash
-
-tmpfile=`mktemp --suffix .jpg`
-
-convert -strip -interlace Plane -quality 50% $1 $tmpfile
-
-echo $tmpfile

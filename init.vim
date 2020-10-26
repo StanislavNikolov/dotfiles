@@ -11,8 +11,6 @@ set nowrap
 filetype plugin on
 set tabstop=4
 set shiftwidth=4
- " no stupid python filetype shit, don't overwrite my tabstop settings
-let g:python_recommended_style=0
 set colorcolumn=101
 set scrolloff=10
 set foldenable
@@ -69,8 +67,9 @@ let g:deoplete#enable_at_startup = 1
 call plug#end()
 " }}}
 " Color settings {{{
-" set termguicolors
+set termguicolors
 set background=dark
+"set background=light
 syntax enable
 colorscheme gruvbox
 

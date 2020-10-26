@@ -1,64 +1,12 @@
-# aliases
-alias ls='ls --color=auto --group-directories-first -X'
-alias grep='grep --colour=auto'
-
-#alias c='cd'
-alias l='ls '
-alias lh='ls -lh'
-alias la='ls -a'
-alias lah='ls -lah'
-
-#alias vi="nvim"
-alias vi="echo kak"
-alias duh='du -h --max-depth=1 | sort -h'
-alias df='df --si'
-
-export EDITOR=nvim
-export VISUAL=nvim
-export TERMINAL=sakura
-export GOPATH="$HOME/.go"
-export PATH="$HOME/.hax:$HOME/.local/bin:$PATH:/usr/local/bin:$GOPATH/bin"
-export LANG="en_US.utf8"
-
-bindkey -e
-bindkey ';5C' forward-word
-bindkey ';5D' backward-word
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
-
-# Enable colors for ls, etc.
-if [[ -f /etc/DIR_COLORS ]] ; then
-	eval $(dircolors -b /etc/DIR_COLORS)
-fi
-
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
-#PS1="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
-PS1_REAL="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
-# PS2="%B %_ %F{blue}>%f%b "
-
-setopt HIST_IGNORE_DUPS
-setopt APPEND_HISTORY
+# history
+HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
-HISTFILE=~/.zsh_history
 
-setopt auto_cd
-setopt histignorespace # commands starting with ' ' are not saved
-# TODO research
-# setopt complete_in_word
-# setopt extended_glob
-# setopt long_list_jobs
-# setopt notify
-# setopt nohup
-# setopt flow_control
-# setopt no_list_ambiguous
-# setopt rmstarsilent
-# setopt auto_param_slash
-
-#set -o vi
-#KEYTIMEOUT=1 # fix the annoying delay between switching modes
+PS1="%B%(!.%F{red}%m.%F{green}%n@%m) %F{blue}%1~ %F{blue}%(!.#.$)%f%b "
 
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
@@ -94,27 +42,8 @@ man() {
 		man "$@"
 }
 
-wds() {
-	echo `pwd` > $HOME/.currentWorkDir
-}
-
-wdg() {
-	cd `cat $HOME/.currentWorkDir`
-}
-
-terminfo_down_sc=$terminfo[cud1]$terminfo[cuu1]$terminfo[sc]$terminfo[cud1]
-function zle-line-init zle-keymap-select {
-    #PS1_2="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-    PS1="%{$terminfo_down_sc$PS1_2$terminfo[rc]%}% $PS1_REAL"
-    zle reset-prompt
-}
-preexec () { print -rn -- $terminfo[el]; }
-zle -N zle-line-init
-zle -N zle-keymap-select
-
 upload() {
 	echo "Uploading..."
-	# TODO ptpb.pw died around Q1 2019, check for replacement
 	if [[ "$1" == "" ]]; then # stdin
         curl -F"file=@-" https://0x0.st
 	else
@@ -122,25 +51,17 @@ upload() {
 	fi
 }
 
-qfind() {
-	all=`find`
-	for arg in "$@"
-	do
-		all=`grep "$arg" <<< "$all"`
+c() {
+	g++ -O2 $1.cpp -o $1 -std=c++17 -DSTJO
+}
+
+w() {
+	while true; do
+		inotifywait -e close_write $1.cpp
+		clear
+		c $1 && echo Done && timeout 5 time ./$1 < $2
 	done
-	echo "$all"
 }
 
-TERMINAL=sakura
-
-asd() {
-	fname="$1"
-	if [[ "$fname" == "" ]]; then
-		fname='a.cpp'
-	fi
-	if [ -f "$fname" ]; then
-		echo "$fname exists" 2>&1
-		return 1
-	fi
-	cp ~/templates/empty.cpp "$fname"
-}
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'

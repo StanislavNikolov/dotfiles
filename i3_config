@@ -194,3 +194,4 @@ for_window [title="Preferences$"] floating enable
 exec bash ~/.autorun
 
 bindsym $mod+Shift+w sticky toggle
+bindsym $mod+x move workspace to output left

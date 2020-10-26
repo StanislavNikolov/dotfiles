@@ -7,4 +7,5 @@ cp ~/.xinitrc ./xinitrc
 cp ~/.autorun ~/autorun
 
 diff --brief -Nr ./hax ~/.hax > /dev/null || (rm -rf ./hax; cp -r ~/.hax ./hax)
-diff --brief -Nr ./i3 ~/config/i3 > /dev/null || (rm -rf ./i3; cp -r ~/.config/i3 ./i3)
+diff --brief -Nr ./i3 ~/.config/i3 > /dev/null || (rm -rf ./i3; cp -r ~/.config/i3 ./i3)
+diff --brief -Nr ./sway ~/.config/sway > /dev/null || (rm -rf ./sway; cp -r ~/.config/sway ./sway)

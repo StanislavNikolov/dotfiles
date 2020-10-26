@@ -1,9 +1,0 @@
-#!/bin/env bash
-
-#barData | ~/bar/lemonbar -g 1896x20+12+8 \
-barData | ~/bar/lemonbar -g 1350x20+8+8 -n "lemonbar" \
-	-u 2 \
-	-f "Monospace:size=10" \
-	-f "FontAwesome:size=11"
-
-#stalonetray -c $HOME/.config/stalonetray/stalonetrayrc

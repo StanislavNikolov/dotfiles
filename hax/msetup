@@ -1,6 +1,0 @@
-#/bin/zsh
-
-xrandr --output HDMI1 --off
-xrandr --output LVDS1 --auto --dpi 90
-
-setwallpaper
