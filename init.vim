@@ -16,9 +16,22 @@ set scrolloff=10
 set foldenable
 set foldlevelstart=6
 set foldmethod=syntax
+set mouse=a
+
+" bulgarian bds langmap
+"set langmap+=(1234567890-.;`1234567890-= " number row, no shift
+"set langmap+=)!?+"%=:/–№$€;~!@#$%^&*()_+ " number row, with shift
+"set langmap+=\\,уеишщксдзц\\;„;qwertyuiop[]\\\
+"set langmap+=ьяаожгтнвмч;asdfghjkl\\;'   " home row, no shift
+"set langmap+=юйъэфхпрлб;zxcvbnm\\,./
+
 
 set list
 set listchars=tab:··
+
+au FileType text setlocal tw=80 spell spelllang=en,bg
+au FileType tex setlocal colorcolumn=0 wrap spell spelllang=en,bg
+
 " }}}
 " Plugins {{{
 " Install plug.vim if missing
@@ -68,9 +81,15 @@ call plug#end()
 " }}}
 " Color settings {{{
 set termguicolors
-set background=dark
-"set background=light
 syntax enable
+
+let theme_file = $HOME . "/.stjo_theme"
+if filereadable(theme_file) && match(readfile(theme_file), "dark") != -1
+	set background=dark
+else
+	set background=light
+endif
+
 colorscheme gruvbox
 
 " Make the background transparent

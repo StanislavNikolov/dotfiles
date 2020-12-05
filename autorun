@@ -25,4 +25,4 @@ xrdb -merge .Xresources
 
 
 # transperancy
-compton -b
+# compton -b

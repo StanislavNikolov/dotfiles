@@ -12,7 +12,9 @@ mkdir -p ~/.config/nvim
 ln -s $(pwd)/init.vim ~/.config/nvim/init.vim
 
 mkdir -p ~/.config/alacritty
-ln -s $(pwd)/alacritty.yml ~/.config/alacritty/alacritty.yml
+#ln -s $(pwd)/alacritty_dark.yml ~/.config/alacritty/alacritty.yml
+# sadly, alacritty fails to live reload symlinked files
+cp $(pwd)/alacritty_dark.yml ~/.config/alacritty/alacritty.yml
 
 mkdir -p ~/.config/i3
 ln -s $(pwd)/i3_config ~/.config/i3/config

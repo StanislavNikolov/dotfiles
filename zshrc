@@ -55,7 +55,7 @@ c() {
 	g++ -O2 $1.cpp -o $1 -std=c++17 -DSTJO
 }
 
-w() {
+W() {
 	while true; do
 		inotifywait -e close_write $1.cpp
 		clear
@@ -63,5 +63,41 @@ w() {
 	done
 }
 
+alias pdflatex='pdflatex -halt-on-error'
+T() {
+	pdflatex $1.tex >/dev/null && mupdf $1.pdf &
+
+	while true; do
+		inotifywait -e close_write $1.tex
+		clear
+		if ! pdflatex $1.tex >/dev/null; then
+			echo "pdflatex error:"
+			cat $1.log
+			continue
+		fi
+		mupdfPID=$(ps ax | grep mupdf | grep $1.pdf)
+		mupdfopen=$?
+		if [[ "$mupdfopen" == "0" ]]; then
+			kill -HUP $(echo $mupdfPID | cut -d' ' -f2)
+		else
+			echo mupdf not running
+			mupdf $1.pdf &
+		fi
+	done
+}
+
 alias ls='ls --color=auto'
+
 alias grep='grep --color=auto'
+export PATH="$PATH:$HOME/.local/bin"
+
+# Wayland env variables
+# firefox
+#export MOZ_ENABLE_WAYLAND=1
+# gtk3
+#export GDK_DPI_SCALE=1.5
+# sdl
+#export SDL_VIDEODRIVER=wayland
+# EFL
+#export ECORE_EVAS_ENGINE=wayland_egl
+#export ELM_ENGINE=wayland_egl

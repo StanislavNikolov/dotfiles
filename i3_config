@@ -32,7 +32,7 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioNext exec playerctl next
 
 ### Other ###
-bindsym $mod+o exec "sleep 0.1; ~/.hax/scrshot -s"
+# bindsym $mod+o exec scrot -s # why does it not work?
 
 ### Sound ###
 # Raise Volume
@@ -45,7 +45,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mu
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec uxterm
 #bindsym $mod+Return exec sakura
 
 # kill focused window
@@ -195,3 +195,4 @@ exec bash ~/.autorun
 
 bindsym $mod+Shift+w sticky toggle
 bindsym $mod+x move workspace to output left
+bindsym $mod+minus exec "~/dotfiles/change_colors.sh"
