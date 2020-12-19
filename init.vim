@@ -54,7 +54,7 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'pbrisbin/vim-alt-ctags' " automatically runs ctags on any git controlled file
-" Plug 'sheerun/vim-polyglot'
+Plug 'petrbroz/vim-glsl'
 Plug 'junegunn/goyo.vim'
 Plug '907th/vim-auto-save'
 Plug 'tpope/vim-surround'

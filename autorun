@@ -2,7 +2,7 @@
 
 #### misc
 # wallpaper
-feh --bg-scale ~/Pictures/mac_os_catalina.jpg
+feh --bg-fill ~/Pictures/wallpapers/BigSur.png
 
 #### keyboard settings
 xset r rate 200 60
@@ -23,6 +23,4 @@ xrandr --output eDP --set TearFree on
 xrandr --output HDMI-A-0 --set TearFree on
 xrdb -merge .Xresources
 
-
-# transperancy
-# compton -b
+picom -b

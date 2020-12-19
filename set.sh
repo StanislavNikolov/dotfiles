@@ -20,3 +20,4 @@ mkdir -p ~/.config/i3
 ln -s $(pwd)/i3_config ~/.config/i3/config
 
 ln -s $(pwd)/autorun ~/.autorun
+ln -s $(pwd)/Xresources ~/.Xresources
