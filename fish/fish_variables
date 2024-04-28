@@ -40,4 +40,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dFFCC66
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/Users/stjo/\x2elocal/bin\x1e/Users/stjo/zls/zig\x2dout/bin\x1e/Users/stjo/go/bin\x1e/opt/homebrew/opt/llvm/bin\x1e/opt/homebrew/opt/postgresql\x4015/bin\x1e/opt/homebrew/bin
+SETUVAR fish_user_paths:/home/stjo/\x2elocal/bin\x1e/Users/stjo/\x2elocal/bin\x1e/Users/stjo/zls/zig\x2dout/bin\x1e/Users/stjo/go/bin\x1e/opt/homebrew/opt/llvm/bin\x1e/opt/homebrew/opt/postgresql\x4015/bin\x1e/opt/homebrew/bin
