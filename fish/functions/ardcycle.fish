@@ -10,7 +10,7 @@ function ardcycle
 	screen -X -S ardcycle quit
 	
 	set_color blue; echo "Uploading..."; set_color normal;
-	arduino-cli upload --fqbn arduino:avr:uno -p /dev/cu.usbmodem11301
+	arduino-cli upload --fqbn arduino:avr:uno -p /dev/cu.usbmodem1301
 	if not test $status -eq 0
 		set_color red; echo "Failed to upload!"; set_color normal;
 		return 1
@@ -23,5 +23,5 @@ function ardcycle
 	sleep 2;
 
 	set_color blue; echo "Opening serial..."; set_color normal;
-	screen -S ardcycle /dev/cu.usbmodem11301 115200
+	screen -S ardcycle /dev/cu.usbmodem1301 115200
 end
