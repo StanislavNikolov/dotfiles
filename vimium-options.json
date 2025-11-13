@@ -1,0 +1,162 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\n\nunmap J\nunmap K\nmap J nextTab\nmap K previousTab",
+  "settingsVersion": "2.3",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://krunker.io/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://13.58.67.102:8080/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://localhost:8888/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://localhost:8888/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://domino2.musala.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://martinnikifor.000webhostapp.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://simaxgame.000webhostapp.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://gamejam20202020.000webhostapp.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://gamejs.online/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "file:///*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://tatarskidemos.free.bg/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://emagjby-games.ga/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://legitgames.free.bg/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://play.typeracer.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://domino2.musala.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://cukii.me/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://thisponydoesnotexist.net/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.coolmathgames.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://pantel.is/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://v6p9d9t4.ssl.hwcdn.net/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://localhost:3111/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://jo.zle.si/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://bluishcoder.co.nz/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://linuxcontainers.org/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://pavel.it.fmi.uni-sofia.bg/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://bin.gamejs.online/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://localhost:8000/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.bentley.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://asciiflow.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://play.max.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://monkeytype.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://jsdw.me/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://en.key-test.ru/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.ticketmaster.co.uk/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.raylib.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://agar.io/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://editor.p5js.org/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://abetterrouteplanner.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://messenger.abeto.co/*"
+    }
+  ]
+}

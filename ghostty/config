@@ -1,0 +1,13 @@
+font-family = "DejaVuSansM Nerd Font Mono"
+# background-opacity = 0.75
+# background-blur-radius = 20
+
+keybind = super+h=goto_split:left
+keybind = super+j=goto_split:bottom
+keybind = super+k=goto_split:top
+keybind = super+l=goto_split:right
+macos-option-as-alt = left
+
+unfocused-split-opacity=0.99
+auto-update = off
+theme = light:catppuccin latte,dark:catppuccin mocha

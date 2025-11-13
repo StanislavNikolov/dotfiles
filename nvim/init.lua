@@ -14,8 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- colors
-	{ "echasnovski/mini.base16", version = "*" },
-	{ "ellisonleao/gruvbox.nvim" },
+	{ "echasnovski/mini.base16", version = "*" }, { "ellisonleao/gruvbox.nvim" },
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{ "rose-pine/neovim", name = "rose-pine" },
 
@@ -141,11 +140,27 @@ wk.add({
 	{ "<leader>li", function() vim.lsp.buf.incoming_calls() end, desc = "Incoming calls" }
 })
 
+run_program = function()
+	local filepath = vim.fn.expand('%:p')
+	vim.cmd.wincmd("v")
+	vim.cmd.wincmd("l")
+	vim.cmd(":terminal odin run " .. filepath .. " -file")
+end
+
+watch_program = function()
+	local filepath = vim.fn.expand('%:p')
+	vim.cmd.wincmd("v")
+	vim.cmd.wincmd("l")
+	vim.cmd(":terminal echo " .. filepath .. " | entr -rc odin run " .. filepath .. " -file")
+end
+
 wk.add({
-	{ "<leader>e",  vim.cmd.NvimTreeToggle, desc = "File Tree" },
-	{ "<leader>u",  vim.cmd.UndotreeToggle, desc = "Undo Tree" },
-	{ "<leader>c",  function() vim.cmd.wincmd("c") end, desc = "Close window" },
-	{ "<leader>q",  function() vim.cmd("bdelete") end, desc = "Close buffer" },
+	{ "<leader>e", vim.cmd.NvimTreeToggle, desc = "File Tree" },
+	{ "<leader>u", vim.cmd.UndotreeToggle, desc = "Undo Tree" },
+	{ "<leader>c", function() vim.cmd.wincmd("c") end, desc = "Close window" },
+	{ "<leader>q", function() vim.cmd("bdelete") end, desc  = "Close buffer" },
+	{ "<leader>r", run_program, desc = "Run program" },
+	{ "<leader>w", watch_program, desc = "Watch program" },
 })
 
 wk.add({
